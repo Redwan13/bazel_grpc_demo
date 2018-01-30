@@ -14,7 +14,14 @@ You need clang-5.0
 
 
 ```
-bazel build //
+bazel build //service
+bazel build //cpp_client
+bazel build //py_client
 ```
 
-Then start service and start client
+Then start service and start client. Service should be started outside ```bazel run``` because bazel cant start only one binary simultaniously. Built binary will be located in ```bazel-bin/service/service```. Clients can be started like this
+
+```
+bazel run //cpp_client
+bazel run //py_client
+```
