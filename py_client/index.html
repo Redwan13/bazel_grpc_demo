@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    </head>
+    <body>
+    <title>grpc demo client</title>
+    <script type="text/javascript">
+        function SubmitForm()
+        {
+            var nameData = document.getElementById("name").value;
+            console.log("name is " + nameData + "; json " + JSON.stringify({"name": nameData}));
+
+            $.ajax({
+                type: "POST",
+                url: "/hello",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({"name": nameData}),
+                type: 'POST',
+                success: function(response) {
+                    document.getElementById("answer").innerHTML = response.message;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+    <div class="page">
+    <h1>Demo</h1>
+    <div>
+        <p>Name:</p>
+        <input id="name" type="text"/>
+        <button onclick="SubmitForm()">Ask for response</button>
+    </div>
+    <div id="answer">
+        Response will be here
+    </div>
+    </div>
+    </body>
+</html>
